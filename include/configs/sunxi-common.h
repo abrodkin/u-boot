@@ -301,8 +301,13 @@ extern int soft_i2c_gpio_scl;
 #define CONFIG_VIDEO_SUNXI
 
 #define CONFIG_CFB_CONSOLE
-#define CONFIG_VIDEO_SW_CURSOR
 #define CONFIG_VIDEO_LOGO
+#define CONFIG_VIDEO_BMP_LOGO
+#define CONFIG_VIDEO_BMP_RLE8
+#define CONFIG_SPLASH_SOURCE
+#define CONFIG_SPLASH_SCREEN
+#define CONFIG_SPLASH_SCREEN_ALIGN
+#define CONFIG_BMP_16BPP
 #define CONFIG_VIDEO_STD_TIMINGS
 #define CONFIG_I2C_EDID
 #define VIDEO_LINE_LEN (pGD->plnSizeX)
@@ -488,8 +493,8 @@ extern int soft_i2c_gpio_scl;
 
 #ifdef CONFIG_VIDEO
 #define CONSOLE_STDOUT_SETTINGS \
-	"stdout=serial,vga\0" \
-	"stderr=serial,vga\0"
+	"stdout=serial\0" \
+	"stderr=serial\0"
 #else
 #define CONSOLE_STDOUT_SETTINGS \
 	"stdout=serial\0" \
@@ -506,6 +511,9 @@ extern int soft_i2c_gpio_scl;
 	DFU_ALT_INFO_RAM \
 	"fdtfile=" CONFIG_DEFAULT_DEVICE_TREE ".dtb\0" \
 	"console=ttyS0,115200\0" \
+	"splashpos=m,m\0" \
+	"splashsource=mmc_fs\0" \
+	"splashimage=0x44000000\0" \
 	BOOTCMD_SUNXI_COMPAT \
 	BOOTENV
 
