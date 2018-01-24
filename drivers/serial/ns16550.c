@@ -14,6 +14,9 @@
 #include <watchdog.h>
 #include <linux/types.h>
 #include <asm/io.h>
+#ifdef CONFIG_TARGET_IOT_DEVKIT
+#include <asm/arcregs.h>
+#endif
 
 DECLARE_GLOBAL_DATA_PTR;
 
@@ -54,7 +57,9 @@ DECLARE_GLOBAL_DATA_PTR;
 
 static inline void serial_out_shift(void *addr, int shift, int value)
 {
-#ifdef CONFIG_SYS_NS16550_PORT_MAPPED
+#ifdef CONFIG_TARGET_IOT_DEVKIT
+	write_aux_reg((int)addr, value);
+#elif defined(CONFIG_SYS_NS16550_PORT_MAPPED)
 	outb(value, (ulong)addr);
 #elif defined(CONFIG_SYS_NS16550_MEM32) && defined(CONFIG_SYS_LITTLE_ENDIAN)
 	out_le32(addr, value);
@@ -71,7 +76,9 @@ static inline void serial_out_shift(void *addr, int shift, int value)
 
 static inline int serial_in_shift(void *addr, int shift)
 {
-#ifdef CONFIG_SYS_NS16550_PORT_MAPPED
+#ifdef CONFIG_TARGET_IOT_DEVKIT
+	return read_aux_reg((int)addr);
+#elif defined(CONFIG_SYS_NS16550_PORT_MAPPED)
 	return inb((ulong)addr);
 #elif defined(CONFIG_SYS_NS16550_MEM32) && defined(CONFIG_SYS_LITTLE_ENDIAN)
 	return in_le32(addr);
