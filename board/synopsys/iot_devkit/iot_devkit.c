@@ -15,16 +15,16 @@
 DECLARE_GLOBAL_DATA_PTR;
 
 #define SYSCON_BASE	0xf000a000
-#define AHBCKDIV	(SYSCON_BASE + 0x04)
-#define APBCKDIV	(SYSCON_BASE + 0x08)
-#define APBCKEN		(SYSCON_BASE + 0x0C)
+#define AHBCKDIV	(void *)(SYSCON_BASE + 0x04)
+#define APBCKDIV	(void *)(SYSCON_BASE + 0x08)
+#define APBCKEN		(void *)(SYSCON_BASE + 0x0C)
 #define CLKSEL		(void *)(SYSCON_BASE + 0x24)
 #define CLKSTAT		(void *)(SYSCON_BASE + 0x28)
 #define PLLCON		(void *)(SYSCON_BASE + 0x2C)
-#define APBCKSEL	(SYSCON_BASE + 0x30)
-#define AHBCKEN		(SYSCON_BASE + 0x34)
-#define USBPHY_PLL	(SYSCON_BASE + 0x78)
-#define USBCFG		(SYSCON_BASE + 0x7c)
+#define APBCKSEL	(void *)(SYSCON_BASE + 0x30)
+#define AHBCKEN		(void *)(SYSCON_BASE + 0x34)
+#define USBPHY_PLL	(void *)(SYSCON_BASE + 0x78)
+#define USBCFG		(void *)(SYSCON_BASE + 0x7c)
 
 #define PLL_MASK_0	0xffcfffff
 #define PLL_MASK_1	0xffcfff00
