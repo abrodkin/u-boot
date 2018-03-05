@@ -125,6 +125,15 @@ int mach_cpu_init(void)
 	if (!freq)
 		return -EINVAL;
 
+	/* If CPU freq > 100 MHz, divide eFLASH clock by 2 */
+	if (freq > 100000000) {
+		uint32_t reg = readl(AHBCKDIV);
+
+		reg &= ~(0xF << 8);
+		reg |= 2 << 8;
+		writel(reg, AHBCKDIV);
+	}
+
 	return set_cpu_freq(freq);
 }
 
