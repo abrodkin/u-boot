@@ -37,7 +37,7 @@ tune-$(CONFIG_CPU_ARM920T)	=
 tune-$(CONFIG_CPU_ARM926EJS)	=
 tune-$(CONFIG_CPU_ARM946ES)	=
 tune-$(CONFIG_CPU_SA1100)	=-mtune=strongarm1100
-tune-$(CONFIG_CPU_PXA)		=-mcpu=xscale
+tune-$(CONFIG_CPU_PXA)		=-mtune=xscale
 tune-$(CONFIG_CPU_ARM1136)	=
 tune-$(CONFIG_CPU_ARM1176)	=
 tune-$(CONFIG_CPU_V7A)		=
