@@ -43,10 +43,9 @@ PLATFORM_CPPFLAGS += -mcpu=archs
 endif
 
 PLATFORM_CPPFLAGS += -ffixed-r25 -D__ARC__ -gdwarf-2 -mno-sdata
-PLATFORM_RELFLAGS += -ffunction-sections -fdata-sections
 
 # Needed for relocation
-LDFLAGS_FINAL += -pie --gc-sections
+LDFLAGS_FINAL += -pie
 
 # Load address for standalone apps
 CONFIG_STANDALONE_LOAD_ADDR ?= 0x82000000
