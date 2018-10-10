@@ -1,0 +1,1 @@
+PLATFORM_CPPFLAGS += -mlittle-endian -mcode-density -mdiv-rem -mswap -mnorm -mmpy-option=6 -mbarrel-shifter
