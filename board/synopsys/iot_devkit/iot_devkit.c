@@ -88,6 +88,10 @@ static int set_cpu_freq(unsigned int clk)
 	return 0;
 }
 
+extern u8 __rom_end[];
+extern u8 __ram_start[];
+extern u8 __ram_end[];
+
 /*
  * Use mach_cpu_init() for .data section copy as board_early_init_f() will be
  * too late: initf_dm() will use a value of "av_" variable from not yet
@@ -96,6 +100,16 @@ static int set_cpu_freq(unsigned int clk)
 int mach_cpu_init(void)
 {
 	int offset, freq;
+
+	/* Don't relocate U-Boot */
+	gd->flags |= GD_FLG_SKIP_RELOC;
+
+	/* Copy data from ROM to RAM */
+	u8 *src = __rom_end;
+	u8 *dst = __ram_start;
+
+	while (dst < __ram_end)
+		*dst++ = *src++;
 
 	/* Enable debug uart */
 #define DEBUG_UART_BASE		0x80014000
