@@ -8,16 +8,6 @@ else
 CONFIG_SYS_BIG_ENDIAN = 1
 endif
 
-ifdef CONFIG_SYS_LITTLE_ENDIAN
-PLATFORM_LDFLAGS += -EL
-PLATFORM_CPPFLAGS += -mlittle-endian
-endif
-
-ifdef CONFIG_SYS_BIG_ENDIAN
-PLATFORM_LDFLAGS += -EB
-PLATFORM_CPPFLAGS += -mbig-endian
-endif
-
 ifdef CONFIG_ARC_MMU_VER
 CONFIG_MMU = 1
 endif
