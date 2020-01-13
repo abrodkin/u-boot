@@ -7,6 +7,7 @@ config SYS_ARCH
 config SYS_CPU
 	default "arcv1" if ISA_ARCOMPACT
 	default "arcv2" if ISA_ARCV2
+	default "arcv3_64" if ISA_ARCV3_64
 
 choice
 	prompt "ARC Instruction Set"
@@ -14,15 +15,30 @@ choice
 
 config ISA_ARCOMPACT
 	bool "ARCompact ISA"
+	select 32BIT
 	help
 	  The original ARC ISA of ARC600/700 cores
 
 config ISA_ARCV2
 	bool "ARC ISA v2"
+	select 32BIT
+	help
+	  ISA for the Next Generation ARC-HS cores
+
+config ISA_ARCV3_64
+	bool "ARC ISA v3 64-bit"
+	select 64BIT
+	select PHYS_64BIT
 	help
 	  ISA for the Next Generation ARC-HS cores
 
 endchoice
+
+config 32BIT
+	bool
+
+config 64BIT
+	bool
 
 choice
 	prompt "CPU selection"
@@ -63,6 +79,15 @@ config CPU_ARCHS38
 	select ARC_MMU_V4
 	help
 	  Next Generation ARC Core based on ISA-v2 ISA with MMU.
+
+config CPU_ARC64
+	bool "ARC 64-bit"
+	depends on ISA_ARCV3_64
+	select SYS_DCACHE_OFF
+	select SYS_ICACHE_OFF
+
+	help
+	  Dummy 64-bit ARCv2 ARC.
 
 endchoice
 
