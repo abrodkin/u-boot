@@ -19,5 +19,6 @@
 #include <asm-generic/bitops/__fls.h>
 #include <asm-generic/bitops/fls64.h>
 #include <asm-generic/bitops/__ffs.h>
+#include <asm-generic/bitops/non-atomic.h>
 
 #endif /* __ASM_ARC_BITOPS_H */
