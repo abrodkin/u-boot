@@ -149,7 +149,7 @@ ENTRY(EV_Extension)
 	j	do_extension
 ENDPROC(EV_Extension)
 
-#ifdef CONFIG_ISA_ARCV2
+#if defined(CONFIG_ISA_ARCV2) || defined(CONFIG_ISA_ARCV3_64)
 ENTRY(EV_SWI)
 	SAVE_ALL_SYS
 	mov	%r0, %sp

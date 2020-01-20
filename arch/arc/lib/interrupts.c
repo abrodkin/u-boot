@@ -142,7 +142,7 @@ void do_extension(struct pt_regs *regs)
 	bad_mode(regs);
 }
 
-#ifdef CONFIG_ISA_ARCV2
+#if defined (CONFIG_ISA_ARCV2) || defined(CONFIG_ISA_ARCV3_64)
 void do_swi(struct pt_regs *regs)
 {
 	printf("Software Interrupt exception\n");
