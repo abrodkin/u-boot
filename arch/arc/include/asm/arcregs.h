@@ -121,6 +121,11 @@
 /* ARCNUM [15:8] - field to identify each core in a multi-core system */
 #define CPU_ID_GET()	((read_aux_reg(ARC_AUX_IDENTITY) & 0xFF00) >> 8)
 
+static const inline int is_isa_arcv3_64(void)
+{
+	return IS_ENABLED(CONFIG_ISA_ARCV3_64);
+}
+
 static const inline int is_isa_arcv2(void)
 {
 	return IS_ENABLED(CONFIG_ISA_ARCV2);
